@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :inbox_items
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,4 +13,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "inbox_items#index"
+
+  resources :inbox_items, only: %i[ index new edit update create ]
 end

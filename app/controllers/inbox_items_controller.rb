@@ -3,7 +3,8 @@ class InboxItemsController < ApplicationController
 
   # GET /inbox_items or /inbox_items.json
   def index
-    @inbox_items = InboxItem.all
+    @inbox_item_count = Current.user.inbox_items.count
+    @inbox_item = Current.user.inbox_items.last
   end
 
   # GET /inbox_items/1 or /inbox_items/1.json
@@ -12,7 +13,7 @@ class InboxItemsController < ApplicationController
 
   # GET /inbox_items/new
   def new
-    @inbox_item = InboxItem.new
+    @inbox_item = Current.user.inbox_items.new
   end
 
   # GET /inbox_items/1/edit
@@ -21,11 +22,11 @@ class InboxItemsController < ApplicationController
 
   # POST /inbox_items or /inbox_items.json
   def create
-    @inbox_item = InboxItem.new(inbox_item_params)
+    @inbox_item = Current.user.inbox_items.new(inbox_item_params)
 
     respond_to do |format|
       if @inbox_item.save
-        format.html { redirect_to @inbox_item, notice: "Inbox item was successfully created." }
+        format.html { redirect_to new_inbox_item_path, notice: "Inbox item was successfully created." }
         format.json { render :show, status: :created, location: @inbox_item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -60,7 +61,7 @@ class InboxItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inbox_item
-      @inbox_item = InboxItem.find(params.expect(:id))
+      @inbox_item = Current.user.inbox_items.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.

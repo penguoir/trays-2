@@ -1,15 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Inbox items" %>
+<% content_for :title, "Inbox" %>
 
-<h1>Inbox items</h1>
+<h1>Inbox</h1>
+
+<p>You have <%= @inbox_item_count %> items in your inbox</p>
 
 <div id="inbox_items">
-  <% @inbox_items.each do |inbox_item| %>
-    <%= render inbox_item %>
-    <p>
-      <%= link_to "Show this inbox item", inbox_item %>
-    </p>
+  <% if @inbox_item.present? %>
+    <%= render @inbox_item %>
+  <% else %>
+    <p>No items in inbox</p>
   <% end %>
 </div>
 
