@@ -1,0 +1,11 @@
+<div id="<%= dom_id project %>">
+  <p>
+    <strong>Name:</strong>
+    <%= project.name %>
+  </p>
+
+  <p>
+    <strong>Body:</strong>
+    <%== render_markdown(project.body) %>
+  </p>
+</div>
