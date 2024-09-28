@@ -1,9 +1,9 @@
 <div id="<%= dom_id inbox_item %>" class="inbox-item">
   <p>
     <% if inbox_item.done %>
-      <s><%= inbox_item.body %></s>
+      <s><%== inbox_item.body %></s>
     <% else %>
-      <%= inbox_item.body %>
+      <%== inbox_item.body %>
     <% end %>
   </p>
 

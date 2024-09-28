@@ -17,6 +17,17 @@
   </p>
 
   <p>
+    <strong>Stops incubating at:</strong>
+
+    <% if @project.stops_incubating_at.present? %>
+      <time datetime="<%= @project.stops_incubating_at %>">
+        <%= @project.stops_incubating_at.strftime("%A, %B %d %Y") %>
+        (<%= @project.stops_incubating_at.future? ? "in #{distance_of_time_in_words_to_now(@project.stops_incubating_at)}" : "#{distance_of_time_in_words_to_now(@project.stops_incubating_at)} ago" %>)
+      </time>
+    <% end %>
+  </p>
+
+  <p>
     <strong>Next actions:</strong>
 
     <ul>
@@ -30,8 +41,6 @@
 </div>
 
 <div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
-
-  <%= button_to "Destroy this project", @project, method: :delete %>
+  <%= link_to "Edit this project", edit_project_path(@project) %>
+  <%= button_to "Destroy this project", @project, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this project?" } %>
 </div>

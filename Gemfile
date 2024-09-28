@@ -63,3 +63,5 @@ group :test do
 end
 
 gem "kramdown", "~> 2.4"
+
+gem "chronic", "~> 0.10.2"

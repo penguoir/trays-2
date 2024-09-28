@@ -14,4 +14,8 @@
   <% if project.waiting_for.present? %>
     -- Waiting for <%= project.waiting_for %>
   <% end %>
+
+  <% if project.stops_incubating_at.present? %>
+    -- Incubating until <%= project.stops_incubating_at.strftime("%A, %B %d %Y") %>
+  <% end %>
 </li>
