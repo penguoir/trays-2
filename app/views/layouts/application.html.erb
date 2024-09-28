@@ -35,7 +35,7 @@
     <%= yield %>
 
     <div class="pinned-inbox-item">
-      <%= render partial: "inbox_items/inbox_item", locals: { inbox_item: Current.user.pinned_inbox_item } if Current.user.pinned_inbox_item.present? %>
+      <%= render partial: "inbox_items/inbox_item", locals: { inbox_item: Current.user.pinned_inbox_item } if Current.user&.pinned_inbox_item.present? %>
     </div>
   </body>
 </html>
