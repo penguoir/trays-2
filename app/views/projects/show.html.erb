@@ -1,6 +1,33 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @project %>
+<div id="<%= dom_id @project %>">
+  <p>
+    <strong>Name:</strong>
+    <%= @project.name %>
+  </p>
+
+  <p>
+    <strong>Body:</strong>
+    <%== render_markdown(@project.body) %>
+  </p>
+
+  <p>
+    <strong>Waiting for:</strong>
+    <%= @project.waiting_for %>
+  </p>
+
+  <p>
+    <strong>Next actions:</strong>
+
+    <ul>
+      <% @project.next_actions.each do |next_action| %>
+        <li>
+          <%= render next_action %>
+        </li>
+      <% end %>
+    </ul>
+  </p>
+</div>
 
 <div>
   <%= link_to "Edit this project", edit_project_path(@project) %> |

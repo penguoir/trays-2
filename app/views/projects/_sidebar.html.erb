@@ -1,9 +1,5 @@
 <ul>
-  <% @projects.without_area.each do |project| %>
-    <li>
-      <%= link_to project.name, project_path(project) %>
-    </li>
-  <% end %>
+  <%= render @projects.without_area %>
 
   <% @projects.active.grouped_by_area.each do |area, projects| %>
     <li>
@@ -11,11 +7,7 @@
         <summary><%= area %></summary>
 
         <ul>
-          <% projects.each do |project| %>
-            <li>
-              <%= link_to project.name, project_path(project) %>
-            </li>
-          <% end %>
+          <%= render projects %>
         </ul>
       </details>
     </li>
@@ -30,18 +22,7 @@
       <summary>Inactive (<%= @projects.inactive.count %>)</summary>
 
       <ul>
-      <% @projects.inactive.each do |project| %>
-        <li>
-          <%= link_to project_path(project) do %>
-            <% if project.area.present? %>
-              (<%= project.area %>)
-            <% end %>
-
-            <%= project.name %>
-
-          <% end %> -- Waiting for <%= project.waiting_for %>
-        </li>
-        <% end %>
+        <%= render @projects.inactive, with_area: true %>
       </ul>
     </details>
   </li>

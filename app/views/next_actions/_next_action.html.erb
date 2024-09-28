@@ -1,6 +1,10 @@
-<div id="<%= dom_id next_action %>" class="next-action">
+<%= turbo_frame_tag next_action, class: "next-action" do %>
   <p>
-    <%= next_action.body %> (<%= next_action.project&.name || "No project" %>)
+    <% if next_action.done %>
+      <s><%= next_action.body %> (<%= next_action.project&.name || "No project" %>)</s>
+    <% else %>
+      <%= next_action.body %> (<%= next_action.project&.name || "No project" %>)
+    <% end %>
   </p>
 
   <% if next_action.done %>
@@ -9,7 +13,6 @@
     <%= button_to "Done", next_action_path(next_action), params: { next_action: { done: true } }, method: :patch, class: "mark-as-done-button" %>
   <% end %>
 
-
-  <%= link_to "Show", next_action_path(next_action) %>
-  <%= link_to "Edit", edit_next_action_path(next_action) %>
-</div>
+  <%= link_to "Show", next_action_path(next_action), target: "_top" %>
+  <%= link_to "Edit", edit_next_action_path(next_action), target: "_top" %>
+<% end %>

@@ -14,7 +14,13 @@ class Project < ApplicationRecord
   scope :active, -> { without_waiting_for }
   scope :inactive, -> { with_waiting_for }
 
+  has_many :next_actions, dependent: :destroy
+
   def inactive?
     Project.inactive.exists?(id)
+  end
+
+  def active?
+    !inactive?
   end
 end
