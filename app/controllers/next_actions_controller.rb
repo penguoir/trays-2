@@ -61,6 +61,6 @@ class NextActionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def next_action_params
-      params.expect(next_action: [ :project_id, :body, :done ])
+      params.expect(next_action: [ :project_id, :body, :done, :context ])
     end
 end

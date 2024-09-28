@@ -6,8 +6,15 @@
 
 <div id="next_actions">
   <ul>
-    <% @next_actions.each do |next_action| %>
-      <li><%= render next_action %></li>
+    <% @next_actions.group_by(&:context).each do |context, next_actions| %>
+      <li>
+        <%= context.present? ? context : "No Context" %>
+
+        <ul>
+          <% next_actions.each do |next_action| %>
+          <li><%= render next_action %></li>
+        <% end %>
+      </ul>
     <% end %>
   </ul>
 </div>

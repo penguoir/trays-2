@@ -9,23 +9,38 @@
       </ul>
     </div>
   <% end %>
+
   <div>
     <%= form.label :project_id, style: "display: block" %>
+
     <select name="next_action[project_id]">
       <option value="">Choose a project</option>
       <% Current.user.projects.grouped_by_area.each do |area, projects| %>
         <optgroup label="<%= area %>">
           <% projects.each do |project| %>
-            <option value="<%= project.id %>"><%= project.name %></option>
+            <option value="<%= project.id %>" <%= "selected" if project.id == next_action.project_id %>><%= project.name %></option>
           <% end %>
         </optgroup>
       <% end %>
     </select>
   </div>
+
   <div>
     <%= form.label :body, style: "display: block" %>
     <%= form.textarea :body %>
   </div>
+
+  <div>
+    <%= form.label :context, style: "display: block" %>
+    <%= form.text_field :context, list: "context-list", value: next_action.context %>
+
+    <datalist id="context-list">
+      <% Current.user.next_actions.pluck(:context).uniq.each do |context| %>
+        <option value="<%= context %>"><%= context %></option>
+      <% end %>
+    </datalist>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

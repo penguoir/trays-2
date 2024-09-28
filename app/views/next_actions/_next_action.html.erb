@@ -1,9 +1,13 @@
 <%= turbo_frame_tag next_action, class: "next-action" do %>
   <p>
     <% if next_action.done %>
-      <s><%= next_action.body %> (<%= next_action.project&.name || "No project" %>)</s>
+      <s><%= next_action.body %>
     <% else %>
-      <%= next_action.body %> (<%= next_action.project&.name || "No project" %>)
+      <%= next_action.body %> 
+    <% end %>
+
+    <% if next_action.project.present? %>
+      (<%= next_action.project.name %>)
     <% end %>
   </p>
 
