@@ -4,15 +4,14 @@
       <%= link_to project.name, project_path(project) %>
     </li>
   <% end %>
-  <% @projects.grouped_by_area.each do |area, projects| %>
+
+  <% @projects.active.grouped_by_area.each do |area, projects| %>
     <li>
       <details open>
         <summary><%= area %></summary>
 
         <ul>
           <% projects.each do |project| %>
-            <% next unless project.persisted? %>
-
             <li>
               <%= link_to project.name, project_path(project) %>
             </li>
@@ -21,9 +20,29 @@
       </details>
     </li>
   <% end %>
-  <% unless current_page?(new_project_path) %>
-    <li class="new-project">
-      <%= link_to "New Project", new_project_path %>
-    </li>
-  <% end %>
+
+  <li class="new-project">
+    <%= link_to "New Project", new_project_path %>
+  </li>
+
+  <li>
+    <details <%= "open" if @project&.inactive? %>>
+      <summary>Inactive (<%= @projects.inactive.count %>)</summary>
+
+      <ul>
+      <% @projects.inactive.each do |project| %>
+        <li>
+          <%= link_to project_path(project) do %>
+            <% if project.area.present? %>
+              (<%= project.area %>)
+            <% end %>
+
+            <%= project.name %>
+
+          <% end %> -- Waiting for <%= project.waiting_for %>
+        </li>
+        <% end %>
+      </ul>
+    </details>
+  </li>
 </ul>

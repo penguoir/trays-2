@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_09_28_192847) do
+ActiveRecord::Schema[8.0].define(version: 2024_09_28_200900) do
   create_table "inbox_items", force: :cascade do |t|
     t.text "body", null: false
     t.integer "user_id", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_09_28_192847) do
     t.string "area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "waiting_for"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
