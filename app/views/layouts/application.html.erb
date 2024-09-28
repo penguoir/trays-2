@@ -23,6 +23,17 @@
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <li><%= link_to "Capture", new_inbox_item_path %></li>
+        <li><%= link_to "Inbox", inbox_items_path %></li>
+      </ul>
+    </nav>
+
     <%= yield %>
+
+    <div class="pinned-inbox-item">
+      <%= render partial: "inbox_items/inbox_item", locals: { inbox_item: Current.user.pinned_inbox_item } if Current.user.pinned_inbox_item.present? %>
+    </div>
   </body>
 </html>

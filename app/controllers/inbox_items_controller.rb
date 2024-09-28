@@ -1,10 +1,11 @@
 class InboxItemsController < ApplicationController
+  include Authentication
   before_action :set_inbox_item, only: %i[ show edit update destroy ]
 
   # GET /inbox_items or /inbox_items.json
   def index
-    @inbox_item_count = Current.user.inbox_items.count
-    @inbox_item = Current.user.inbox_items.last
+    @inbox_item_count = Current.user.inbox_items.where(done: false).count
+    @inbox_item = Current.user.inbox_items.where(done: false).last
   end
 
   # GET /inbox_items/1 or /inbox_items/1.json
@@ -66,6 +67,6 @@ class InboxItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def inbox_item_params
-      params.expect(inbox_item: [ :body, :status ])
+      params.expect(inbox_item: [ :body, :done, :pinned ])
     end
 end

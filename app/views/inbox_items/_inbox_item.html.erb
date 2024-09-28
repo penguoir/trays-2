@@ -1,11 +1,23 @@
-<div id="<%= dom_id inbox_item %>">
+<div id="<%= dom_id inbox_item %>" class="inbox-item">
   <p>
-    <strong>Body:</strong>
-    <%= inbox_item.body %>
+    <% if inbox_item.done %>
+      <s><%= inbox_item.body %></s>
+    <% else %>
+      <%= inbox_item.body %>
+    <% end %>
   </p>
 
-  <p>
-    <strong>Status:</strong>
-    <%= inbox_item.status %>
-  </p>
+  <div class="inbox-item-actions">
+    <% if inbox_item.done %>
+      <%= button_to "Undo", inbox_item_path(inbox_item), params: { inbox_item: { done: false } }, method: :patch %>
+    <% else %>
+      <%= button_to "Done", inbox_item_path(inbox_item), params: { inbox_item: { done: true } }, method: :patch %>
+    <% end %>
+
+    <% if inbox_item.pinned %>  
+      <%= button_to "Unpin", inbox_item_path(inbox_item), params: { inbox_item: { pinned: false } }, method: :patch %>
+    <% else %>
+      <%= button_to "Pin", inbox_item_path(inbox_item), params: { inbox_item: { pinned: true } }, method: :patch %>
+    <% end %>
+  </div>
 </div>

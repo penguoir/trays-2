@@ -1,0 +1,29 @@
+.inbox-item {
+  height: 20ch;
+  width: 20ch;
+  border: 2px solid black;
+  padding: 2px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .inbox-item-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.pinned-inbox-item {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
