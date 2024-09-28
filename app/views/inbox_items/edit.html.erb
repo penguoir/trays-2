@@ -1,0 +1,12 @@
+<% content_for :title, "Editing inbox item" %>
+
+<h1>Editing inbox item</h1>
+
+<%= render "form", inbox_item: @inbox_item %>
+
+<br>
+
+<div>
+  <%= link_to "Show this inbox item", @inbox_item %> |
+  <%= link_to "Back to inbox items", inbox_items_path %>
+</div>

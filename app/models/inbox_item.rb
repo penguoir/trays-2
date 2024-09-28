@@ -1,0 +1,2 @@
+class InboxItem < ApplicationRecord
+end

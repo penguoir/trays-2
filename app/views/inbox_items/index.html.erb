@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Inbox items" %>
+
+<h1>Inbox items</h1>
+
+<div id="inbox_items">
+  <% @inbox_items.each do |inbox_item| %>
+    <%= render inbox_item %>
+    <p>
+      <%= link_to "Show this inbox item", inbox_item %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New inbox item", new_inbox_item_path %>
