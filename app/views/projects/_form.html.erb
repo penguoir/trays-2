@@ -12,6 +12,17 @@
   <% end %>
 
   <div>
+    <%= form.label :area, style: "display: block" %>
+    <%= form.text_field :area, list: "areas", autocomplete: "off" %>
+
+    <datalist id="areas">
+      <% @projects.map(&:area).uniq.compact.each do |area| %>
+        <option value="<%= area %>"></option>
+      <% end %>
+    </datalist>
+  </div>
+
+  <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>

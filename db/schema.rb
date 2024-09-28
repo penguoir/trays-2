@@ -25,6 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_09_28_192847) do
     t.string "name", null: false
     t.text "body"
     t.integer "user_id", null: false
+    t.string "area"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_projects_on_user_id"

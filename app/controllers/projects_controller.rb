@@ -1,10 +1,18 @@
 class ProjectsController < ApplicationController
   include Authentication
+  before_action :set_projects
   before_action :set_project, only: %i[ show edit update destroy ]
 
-  # GET /projects or /projects.json
+  layout "projects"
+
   def index
-    @projects = Current.user.projects
+    project = Current.user.projects.first
+
+    if project
+      redirect_to project_path(project)
+    else
+      redirect_to new_project_path
+    end
   end
 
   # GET /projects/1 or /projects/1.json
@@ -59,6 +67,11 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+    def set_projects
+      @projects = Current.user.projects
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params.expect(:id))
@@ -66,6 +79,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.expect(project: [ :name, :body ])
+      params.expect(project: [ :name, :body, :area ])
     end
 end

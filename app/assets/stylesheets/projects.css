@@ -1,0 +1,10 @@
+.projects-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.new-project {
+  margin-top: 2rem;
+  list-style: none;
+}

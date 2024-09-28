@@ -1,0 +1,27 @@
+<ul>
+  <% @projects.without_area.each do |project| %>
+    <li>
+      <%= link_to project.name, project_path(project) %>
+    </li>
+  <% end %>
+  <% @projects.grouped_by_area.each do |area, projects| %>
+    <li>
+      <details open>
+        <summary><%= area %></summary>
+        <ul>
+          <% projects.each do |project| %>
+            <% next unless project.persisted? %>
+            <li>
+              <%= link_to project.name, project_path(project) %>
+            </li>
+          <% end %>
+        </ul>
+      </details>
+    </li>
+  <% end %>
+  <% unless current_page?(new_project_path) %>
+    <li class="new-project">
+      <%= link_to "New Project", new_project_path %>
+    </li>
+  <% end %>
+</ul>

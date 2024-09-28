@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :projects
   resource :session, only: %i[ new create destroy ]
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -16,4 +15,5 @@ Rails.application.routes.draw do
   root "inbox_items#index"
 
   resources :inbox_items, only: %i[ index new edit update create ]
+  resources :projects, only: %i[ index show new edit update create ]
 end
