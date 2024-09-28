@@ -17,13 +17,15 @@
     <%= link_to "New Project", new_project_path %>
   </li>
 
-  <li>
-    <details <%= "open" if @project&.inactive? %>>
-      <summary>Inactive (<%= @projects.inactive.count %>)</summary>
+  <% if @projects.inactive.any? %>
+    <li>
+      <details <%= "open" if @project&.inactive? %>>
+        <summary>Inactive (<%= @projects.inactive.count %>)</summary>
 
-      <ul>
-        <%= render @projects.inactive, with_area: true %>
-      </ul>
-    </details>
-  </li>
+        <ul>
+          <%= render @projects.inactive, with_area: true %>
+        </ul>
+      </details>
+    </li>
+  <% end %>
 </ul>
