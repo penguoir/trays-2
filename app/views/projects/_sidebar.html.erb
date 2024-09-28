@@ -8,9 +8,11 @@
     <li>
       <details open>
         <summary><%= area %></summary>
+
         <ul>
           <% projects.each do |project| %>
             <% next unless project.persisted? %>
+
             <li>
               <%= link_to project.name, project_path(project) %>
             </li>

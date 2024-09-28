@@ -9,7 +9,6 @@ class Project < ApplicationRecord
     Project
       .where.not(area: nil)
       .where.not(area: "")
-      .group(:area)
       .order("area ASC, name ASC")
       .group_by(&:area)
   }

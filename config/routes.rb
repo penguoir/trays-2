@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   root "inbox_items#index"
 
   resources :inbox_items, only: %i[ index new edit update create ]
-  resources :projects, only: %i[ index show new edit update create ]
+  resources :projects, only: %i[ index show new edit update create destroy ]
 end
