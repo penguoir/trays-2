@@ -6,8 +6,14 @@
       <%= next_action.body %> 
     <% end %>
 
+    --
+
     <% if next_action.project.present? %>
-      (<%= next_action.project.name %>)
+      <%= next_action.project.name %>
+    <% end %>
+
+    <% if next_action.context.present? && !current_page?(next_actions_path) %>
+      @<%= next_action.context %>
     <% end %>
   </p>
 

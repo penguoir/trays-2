@@ -8,13 +8,18 @@
   <ul>
     <% @next_actions.group_by(&:context).each do |context, next_actions| %>
       <li>
-        <%= context.present? ? context : "No Context" %>
+        <details open>
+          <summary>
+            <%= context.present? ? context : "No Context" %>
+          </summary>
 
-        <ul>
-          <% next_actions.each do |next_action| %>
-          <li><%= render next_action %></li>
-        <% end %>
-      </ul>
+          <ul>
+            <% next_actions.each do |next_action| %>
+              <li><%= render next_action %></li>
+            <% end %>
+          </ul>
+        </details>
+      </li>
     <% end %>
   </ul>
 </div>
