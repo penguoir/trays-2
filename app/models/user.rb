@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :inbox_items, dependent: :destroy
   has_many :projects, dependent: :destroy
+  has_many :next_actions, dependent: :destroy
 
   def pinned_inbox_item
     inbox_items.find_by(pinned: true)

@@ -1,0 +1,11 @@
+<% content_for :title, "New next action" %>
+
+<h1>New next action</h1>
+
+<%= render "form", next_action: @next_action %>
+
+<br>
+
+<div>
+  <%= link_to "Back to next actions", next_actions_path %>
+</div>

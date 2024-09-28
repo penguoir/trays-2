@@ -1,0 +1,15 @@
+<div id="<%= dom_id next_action %>" class="next-action">
+  <p>
+    <%= next_action.body %> (<%= next_action.project&.name || "No project" %>)
+  </p>
+
+  <% if next_action.done %>
+    <%= button_to "Not done", next_action_path(next_action), params: { next_action: { done: false } }, method: :patch, class: "mark-as-done-button" %>
+  <% else %>
+    <%= button_to "Done", next_action_path(next_action), params: { next_action: { done: true } }, method: :patch, class: "mark-as-done-button" %>
+  <% end %>
+
+
+  <%= link_to "Show", next_action_path(next_action) %>
+  <%= link_to "Edit", edit_next_action_path(next_action) %>
+</div>

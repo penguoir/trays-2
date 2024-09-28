@@ -1,0 +1,12 @@
+<% content_for :title, "Editing next action" %>
+
+<h1>Editing next action</h1>
+
+<%= render "form", next_action: @next_action %>
+
+<br>
+
+<div>
+  <%= button_to "Destroy this next action", @next_action, method: :delete %>
+  <%= link_to "Back to next actions", next_actions_path %>
+</div>

@@ -1,0 +1,8 @@
+<% content_for :title, "Next action" %>
+
+<%= render @next_action %>
+
+<div>
+  <%= link_to "Back to all next actions", next_actions_path %>
+  <%= button_to "Destroy this next action", @next_action, method: :delete %>
+</div>

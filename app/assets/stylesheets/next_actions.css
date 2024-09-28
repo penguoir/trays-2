@@ -1,0 +1,9 @@
+.next-action {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  p {
+    margin: 0;
+  }
+}

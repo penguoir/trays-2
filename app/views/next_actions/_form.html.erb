@@ -1,0 +1,36 @@
+<%= form_with(model: next_action) do |form| %>
+  <% if next_action.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(next_action.errors.count, "error") %> prohibited this next_action from being saved:</h2>
+
+      <ul>
+        <% next_action.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :project_id, style: "display: block" %>
+    <select name="next_action[project_id]">
+      <option value="">Choose a project</option>
+      <% Current.user.projects.grouped_by_area.each do |area, projects| %>
+        <optgroup label="<%= area %>">
+          <% projects.each do |project| %>
+            <option value="<%= project.id %>"><%= project.name %></option>
+          <% end %>
+        </optgroup>
+      <% end %>
+    </select>
+  </div>
+
+  <div>
+    <%= form.label :body, style: "display: block" %>
+    <%= form.textarea :body %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
