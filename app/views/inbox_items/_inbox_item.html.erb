@@ -19,5 +19,7 @@
     <% else %>
       <%= button_to "Pin", inbox_item_path(inbox_item), params: { inbox_item: { pinned: true } }, method: :patch %>
     <% end %>
+
+    <%= link_to "Edit", edit_inbox_item_path(inbox_item) %>
   </div>
 </div>
