@@ -19,7 +19,7 @@ class Project < ApplicationRecord
   scope :active, -> { without_waiting_for.not_incubating }
   scope :inactive, -> { with_waiting_for.or(incubating) }
 
-  has_many :next_actions, dependent: :destroy
+  has_many :next_actions, dependent: :nullify
 
   before_validation :set_stops_incubating_at
   validate :incubating_until_is_a_date
