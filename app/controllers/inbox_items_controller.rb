@@ -5,7 +5,7 @@ class InboxItemsController < ApplicationController
   # GET /inbox_items or /inbox_items.json
   def index
     @inbox_item_count = Current.user.inbox_items.where(done: false).count
-    @inbox_item = Current.user.inbox_items.where(done: false).last
+    @inbox_item = Current.user.inbox_items.where(done: false).first
   end
 
   # GET /inbox_items/1 or /inbox_items/1.json
