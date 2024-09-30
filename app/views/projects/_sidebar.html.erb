@@ -23,7 +23,7 @@
         <summary>Inactive (<%= @projects.inactive.count %>)</summary>
 
         <ul>
-          <%= render @projects.inactive, with_area: true %>
+          <%= render @projects.inactive.sort_by(&:area), with_area: true %>
         </ul>
       </details>
     </li>
