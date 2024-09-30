@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   layout "projects"
 
   def index
-    project = Current.user.projects.first
+    project = Current.user.projects.active.first
 
     if project
       redirect_to project_path(project)
