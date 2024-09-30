@@ -21,7 +21,7 @@ class NextActionsController < ApplicationController
 
     respond_to do |format|
       if @next_action.save
-        format.html { redirect_to @next_action, notice: "Next action was successfully created." }
+        format.html { redirect_to next_actions_path, notice: "Next action was successfully created." }
         format.json { render :show, status: :created, location: @next_action }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,7 +34,7 @@ class NextActionsController < ApplicationController
   def update
     respond_to do |format|
       if @next_action.update(next_action_params)
-        format.html { redirect_to @next_action, notice: "Next action was successfully updated." }
+        format.html { redirect_to next_actions_path, notice: "Next action was successfully updated." }
         format.json { render :show, status: :ok, location: @next_action }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,6 +51,11 @@ class NextActionsController < ApplicationController
       format.html { redirect_to next_actions_path, status: :see_other, notice: "Next action was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def destroy_done
+    Current.user.next_actions.where(done: true).destroy_all
+    redirect_to next_actions_path, notice: "All done next actions deleted."
   end
 
   private

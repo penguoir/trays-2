@@ -16,5 +16,10 @@ Rails.application.routes.draw do
 
   resources :inbox_items, only: %i[ index new edit update create ]
   resources :projects, only: %i[ index show new edit update create destroy ]
-  resources :next_actions
+
+  resources :next_actions do
+    collection do
+      post :destroy_done
+    end
+  end
 end

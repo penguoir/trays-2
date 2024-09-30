@@ -6,4 +6,9 @@
   p {
     margin: 0;
   }
+
+  .next-action-actions {
+    display: flex;
+    gap: 4px;
+  }
 }

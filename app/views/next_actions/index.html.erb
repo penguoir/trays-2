@@ -25,3 +25,4 @@
 </div>
 
 <%= link_to "New next action", new_next_action_path %>
+<%= button_to "Delete all done", destroy_done_next_actions_path, method: :post, data: { turbo_method: :post, turbo_confirm: "Are you sure?" } %>
