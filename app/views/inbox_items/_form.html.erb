@@ -19,4 +19,13 @@
   <div>
     <%= form.submit %>
   </div>
+
+  <script>
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Enter" && e.metaKey) {
+        e.preventDefault();
+        document.querySelector("input[type='submit']").click();
+      }
+    });
+  </script>
 <% end %>
