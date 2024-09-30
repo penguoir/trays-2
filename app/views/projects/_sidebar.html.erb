@@ -1,5 +1,5 @@
 <ul>
-  <%= render @projects.without_area %>
+  <%= render @projects.active.without_area %>
 
   <% @projects.active.grouped_by_area.each do |area, projects| %>
     <li>
