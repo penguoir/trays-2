@@ -7,7 +7,7 @@
     <% end %>
 
     <% if next_action.project.present? && !current_page?(project_path(next_action.project)) %>
-      -- <%= next_action.project.name %>
+      -- <%= link_to next_action.project.name, next_action.project %>
     <% end %>
 
     <% if next_action.context.present? && !current_page?(next_actions_path) %>
