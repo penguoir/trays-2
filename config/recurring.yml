@@ -1,4 +1,4 @@
 production:
   periodic_cleanup:
     class: UnincubateProjectsJob
-    schedule: every five minutes
+    schedule: every 5m
